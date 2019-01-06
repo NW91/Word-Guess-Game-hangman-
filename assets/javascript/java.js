@@ -1,6 +1,4 @@
-// GLOBAL VARIABLES
-// =====================================
-// arrays and variables for 
+// Global Variables and Arrays
 var wordOptions = ["seattle", "portland", "bellingham", "spokane", "tacoma", "beaverton", "olympia", "salem", "bend"];
 var selectedWord = "";
 var lettersInWord = [];
@@ -8,12 +6,12 @@ var numBlanks = 0;
 var blanksAndSuccesses = [];
 var wrongGuesses = [];
 
-// game counter
+// Game Counter
 var winCount = 0;
 var lossCount = 0;
 var guessesLeft = 0;
 
-// FUNCTIONS
+// Functions
 
 function startGame() {
     selectedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
@@ -25,20 +23,17 @@ function startGame() {
     wrongLetters = [];
     blanksAndSuccesses = [];
 
-    // populate blanks and successes with right number of blanks
+    // makes the right amount of blanks for each word
     for (var i = 0; i < numBlanks; i++) {
         blanksAndSuccesses.push("_");
     }
 
 
-    // change html to reflect round conditions
+    // change html to show which game number it is in the counter
     document.getElementById("wordToGuess").innerHTML = blanksAndSuccesses.join(" ");
     document.getElementById("numGuesses").innerHTML = guessesLeft;
     document.getElementById("winCounter").innerHTML = winCount;
     document.getElementById("lossCounter").innerHTML = lossCount;
-
-
-
 
     // Testing/Debugging
     console.log(selectedWord);
@@ -47,7 +42,6 @@ function startGame() {
     // console.log("blanks and successes " + blanksAndSuccesses);
 
 }
-
 
 function checkLetters(letter) {
     // check if the letter exists anywhere in the word
@@ -59,7 +53,7 @@ function checkLetters(letter) {
         }
     }
 
-    // check where in the word the letter exists then populate blanks and successes array
+    // check to find if the letter fits in the word, and then notate 
     if (isLetterInWord) {
         for (var i = 0; i < numBlanks; i++) {
             if (selectedWord[i] == letter) {
@@ -67,7 +61,7 @@ function checkLetters(letter) {
             }
         }
     }
-    // letter wasn't found 
+    // if the letter wasn't found 
     else {
         wrongLetters.push(letter);
         guessesLeft--;
@@ -86,7 +80,7 @@ function roundComplete() {
 
     if(lettersInWord.toString() == blanksAndSuccesses.toLocaleString()){
         winCount++;
-        alert("Congratulations, you've won!");
+        alert("Congratulations, you've won this round!");
 
         document.getElementById("winCounter").innerHTML = winCount;
 
@@ -94,7 +88,7 @@ function roundComplete() {
     }
     else if (guessesLeft == 0 ){
         lossCount++;
-        alert("you've lost, try again!");
+        alert("you've lost this round, please try again!");
 
         document.getElementById("lossCounter").innerHTML = lossCount;
 
@@ -103,10 +97,9 @@ function roundComplete() {
     }
 }
 
-
-
-// MAIN PROCESS
-// =====================================
+//=======
+// Script
+//=======
 
 // initiates the code the first time
 startGame();
