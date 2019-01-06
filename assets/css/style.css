@@ -3,10 +3,3 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: rgb(156, 156, 156);
 }
-
-.img {
-    display: block;
-    max-width: 75%;
-    height: auto;
-    float: left;
-  }
