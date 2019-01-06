@@ -9,7 +9,7 @@ var wrongGuesses = [];
 // Game Counter
 var winCount = 0;
 var lossCount = 0;
-var guessesLeft = 0;
+var guessesRemaining = 0;
 
 // Functions
 
@@ -19,7 +19,7 @@ function startGame() {
     numBlanks = lettersInWord.length;
 
     // reset
-    guessesLeft = 15;
+    guessesRemaining = 15;
     wrongLetters = [];
     blanksAndSuccesses = [];
 
@@ -31,7 +31,7 @@ function startGame() {
 
     // change html to show which game number it is in the counter
     document.getElementById("wordToGuess").innerHTML = blanksAndSuccesses.join(" ");
-    document.getElementById("numGuesses").innerHTML = guessesLeft;
+    document.getElementById("numGuesses").innerHTML = guessesRemaining;
     document.getElementById("winCounter").innerHTML = winCount;
     document.getElementById("lossCounter").innerHTML = lossCount;
 
@@ -64,16 +64,20 @@ function checkLetters(letter) {
     // if the letter wasn't found 
     else {
         wrongLetters.push(letter);
-        guessesLeft--;
+        guessesRemaining--;
     }
 
 }
 
+// keeps characters guesses to only letters
+function isValidGuess(lettersInWord) {
+    return /^[A-Za-z]$/.test(wrongGuesses);
+}
 
 function roundComplete() {
     console.log("Win count: " + winCount + " | Loss count: " + lossCount + " | guesses left: " + numGuesses);
 
-    document.getElementById("numGuesses").innerHTML = guessesLeft;
+    document.getElementById("numGuesses").innerHTML = guessesRemaining;
     document.getElementById("wordToGuess").innerHTML = blanksAndSuccesses.join(" ");
     document.getElementById("wrongLetters").innerHTML = wrongLetters.join(" ");
 
@@ -86,7 +90,7 @@ function roundComplete() {
 
         startGame();
     }
-    else if (guessesLeft == 0 ){
+    else if (guessesRemaining == 0 ){
         lossCount++;
         alert("you've lost this round, please try again!");
 
@@ -95,6 +99,7 @@ function roundComplete() {
         startGame();
 
     }
+    
 }
 
 //=======
