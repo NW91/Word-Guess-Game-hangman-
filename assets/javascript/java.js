@@ -69,8 +69,8 @@ function checkLetters(letter) {
 }
 
 // keeps characters guesses to only letters
-function isValidGuess(wordToGuess) {
-    return /^[A-Za-z]$/.test();
+function isValidGuess(checkLetters) {
+    return /^[A-Za-z]$/.test(guess);
 }
 
 function roundComplete() {
