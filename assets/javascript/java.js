@@ -14,7 +14,6 @@ var lossCount = 0;
 var guessesLeft = 0;
 
 // FUNCTIONS
-// =====================================
 
 function startGame() {
     selectedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
@@ -60,7 +59,7 @@ function checkLetters(letter) {
         }
     }
 
-    // check where in the word the eltter exists then populate blanks and successes array
+    // check where in the word the letter exists then populate blanks and successes array
     if (isLetterInWord) {
         for (var i = 0; i < numBlanks; i++) {
             if (selectedWord[i] == letter) {
